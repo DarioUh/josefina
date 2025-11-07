@@ -114,20 +114,26 @@
     <audio id="song" src="media/cancion.mp3"></audio>
   </section>
 
-  <!-- 3️⃣ Cuenta regresiva -->
+  <!-- 3 frase -->
+  <section id="presentacion">
+    <img src="img/frase.png" alt="Frase" class="png-overlay" />
+  </section>
+
+  <!-- 4 Cuenta regresiva -->
   <section id="countdown-section">
     <img src="img/tansolofaltan.png" alt="Tan solo faltan" class="png-overlay mb-4" />
     <div id="countdown"></div>
+    <img src="img/paraestedia.png" alt="Para este día tan especial" class="png-overlay mb-4" />
   </section>
 
-  <!-- 4️⃣ Ubicación -->
+  <!-- 5 Ubicación -->
   <section id="ubicacion">
     <button class="png-button" onclick="irUbicacion()">
       <img src="img/boton-ubicacion.png" alt="Ubicación" class="png-overlay" />
     </button>
   </section>
 
-  <!-- 5️⃣ Confirmar asistencia -->
+  <!-- 6 Confirmar asistencia -->
   <section id="confirmar">
     <button class="png-button" onclick="confirmarAsistencia()">
       <img src="img/boton-confirmar.png" alt="Confirmar Asistencia" class="png-overlay" />
@@ -162,7 +168,7 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      countdown.innerHTML = `${days}D ${hours}H ${minutes}M ${seconds}S`;
     }, 1000);
 
     /* 📍 Ir a ubicación */
