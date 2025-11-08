@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis XV Años</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    /* --- CONFIGURACIÓN GENERAL --- */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* --- FONDO FIJO COMPLETO --- */
+    body {
+      background-image: url('img/fondo2.jpg'); /* tu imagen de fondo */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-color: #000;
+    }
+
+    /* --- SECCIONES --- */
+    section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: #fff;
+      scroll-snap-align: center;
+      overflow: hidden;
+    }
+
+    /* --- PNG PRINCIPALES --- */
+    .png-overlay {
+      width: 100vw; /* ocupa todo el ancho visible */
+      height: auto;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      display: block;
+      opacity: 0;
+      transform: scale(1.1) translateY(50px);
+      transition: transform 1.5s ease, opacity 1.5s ease;
+    }
+
+    .png-overlay.visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* --- BOTONES PNG --- */
+    .png-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    /* --- TEXTO CUENTA REGRESIVA --- */
+    #countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 5px #000;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+
+    #countdown.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .png-overlay {
+        width: 100%;
+      }
+      #countdown {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 1️⃣ Presentación -->
+  <section id="presentacion">
+    <img src="img/presentacion.png" alt="Presentación" class="png-overlay" />
+  </section>
+
+  <!-- 2️⃣ Canción favorita -->
+  <section id="cancion">
+    <button class="png-button" onclick="playSong()">
+      <img src="img/boton-cancion.png" alt="Reproducir canción" class="png-overlay" />
+    </button>
+    <audio id="song" src="media/cancion.mp3"></audio>
+  </section>
+
+  <!-- 3 frase -->
+  <section id="presentacion">
+    <img src="img/frase.png" alt="Frase" class="png-overlay" />
+  </section>
+
+  <!-- 4 Cuenta regresiva -->
+  <section id="countdown-section">
+    <img src="img/tansolofaltan.png" alt="Tan solo faltan" class="png-overlay mb-4" />
+    <div id="countdown"></div>
+    <img src="img/paraestedia.png" alt="Para este día tan especial" class="png-overlay mb-4" />
+  </section>
+
+  <!-- 5 Ubicación -->
+  <section id="ubicacion">
+    <img src="img/recepcion.png" alt="Recepcion y ubicacion" class="png-overlay" />
+    <button class="png-button" onclick="irUbicacion()">
+      <img src="img/boton-ubicacion.png" alt="Ubicación" class="png-overlay" />
+    </button>
+  </section>
+
+  <!-- 6 frase -->
+  <section id="Codigo">
+    <img src="img/codigo.png" alt="Codigo de verstimenta" class="png-overlay" />
+  </section>
+
+  <!-- 7 Confirmar asistencia -->
+  <section id="confirmar">
+    <button class="png-button" onclick="confirmarAsistencia()">
+      <img src="img/boton-confirmar.png" alt="Confirmar Asistencia" class="png-overlay" />
+    </button>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    /* 🎵 Reproducir canción */
+    function playSong() {
+      const song = document.getElementById('song');
+      if (song.paused) song.play(); else song.pause();
+    }
+
+    /* ⏳ Cuenta regresiva */
+    const targetDate = new Date('Jan 3, 2026 19:00:00').getTime();
+    const countdown = document.getElementById('countdown');
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        countdown.innerHTML = "¡Es el gran día! 🎉";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days}D ${hours}H ${minutes}M ${seconds}S`;
+    }, 1000);
+
+    /* 📍 Ir a ubicación */
+    function irUbicacion() {
+      window.open('https://maps.app.goo.gl/joLRQpCa2xRZNKfU8', '_blank');
+    }
+
+    /* 💬 Confirmar asistencia por WhatsApp */
+    function confirmarAsistencia() {
+      const mensaje = encodeURIComponent("¡Hola! Quiero confirmar mi asistencia a tus XV 💖");
+      window.open(`https://wa.me/5493884123456?text=${mensaje}`, '_blank'); 
+      // 👆 reemplazá el número con el tuyo real, formato internacional sin "+" ni espacios
+    }
+
+    /* ✨ Animación suave al hacer scroll (zoom suave) */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.png-overlay, #countdown').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
