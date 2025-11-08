@@ -134,13 +134,19 @@
     </button>
   </section>
 
-  <!-- 6 frase -->
+  <!-- 6 codigo vestimenta -->
   <section id="Codigo">
     <img src="img/codigo.png" alt="Codigo de verstimenta" class="png-overlay" />
   </section>
 
-  <!-- 7 Confirmar asistencia -->
+  <!-- 7 regalos -->
+  <section id="regalos">
+    <img src="img/regalos.png" alt="Regalos" class="png-overlay" />
+  </section>
+
+  <!-- 8 Confirmar asistencia -->
   <section id="confirmar">
+    <img src="img/confirmar.png" alt="Regalos" class="png-overlay" />
     <button class="png-button" onclick="confirmarAsistencia()">
       <img src="img/boton-confirmar.png" alt="Confirmar Asistencia" class="png-overlay" />
     </button>
@@ -157,7 +163,7 @@
     }
 
     /* ⏳ Cuenta regresiva */
-    const targetDate = new Date('Jan 3, 2026 19:00:00').getTime();
+    const targetDate = new Date('Jan 3, 2026 19:30:00').getTime();
     const countdown = document.getElementById('countdown');
 
     setInterval(() => {
@@ -185,7 +191,7 @@
     /* 💬 Confirmar asistencia por WhatsApp */
     function confirmarAsistencia() {
       const mensaje = encodeURIComponent("¡Hola! Quiero confirmar mi asistencia a tus XV 💖");
-      window.open(`https://wa.me/5493884123456?text=${mensaje}`, '_blank'); 
+      window.open(`https://wa.me/5493884463830?text=${mensaje}`, '_blank'); 
       // 👆 reemplazá el número con el tuyo real, formato internacional sin "+" ni espacios
     }
 
